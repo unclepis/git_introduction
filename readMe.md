@@ -75,9 +75,18 @@
 >已经在本地创建好了Git仓库，想在github上搭建一个远程Git仓库，希望这两个仓库远程同步，这样github仓库可以作为备份，又可以其他人进行仓库来协作  
 
 	1.在github上创建一个git仓库git_test
-	2.创建远程origin的git仓库  
-		git remote add origin git:gitbub.com/unclepis/git_test.git
-	3.把本地git仓库master分支的内容推送到远程仓库  
+	2.在本地创建git仓库
+		mkdir Desktop/web/git/git_test
+		pwd //可以确认是否已经进入git—_test
+		git init//创建git_test的版本库.git文件
+	3.添加项目需要的文件在git_test文件夹里面
+	4.提交到本地master分支
+		git add file
+		git commit -m"file init"
+
+	5.创建远程origin的git仓库  
+		git remote add origin git@gitbub.com:unclepis/git_test.git
+	6.把本地git仓库master分支的内容推送到远程仓库  
 		git push -u origin master//第一次
 		git push origin master//以后推送  
 **远程库克隆**
