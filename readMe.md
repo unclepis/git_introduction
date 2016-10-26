@@ -143,14 +143,14 @@
 	git stash apply //恢复stash内容并不删除
 		git stash drop//强制删除
 	git stash pop //恢复并删除stash内容
-*多人协作*  
+**多人协作**  
 当从远程库克隆的时候，git会自动把本地的master分支和远程的master分支对应起来，并且默认的远程库是origin。
 
 	git remote //产看远程库的信息
 	git remote -v查看远程库的详细信息
 	git push origin master//推送本地master到远程master
 	git push origin dev//推送本地的dev到远程的dev  
-*多人协作流程*  
+**多人协作流程**  
 
 	1.克隆git仓库到本地
 		git clone git@github.com:unclepis/git_test.git
@@ -180,7 +180,7 @@
 		git add file
 		git comit -m"fix conflict"
 		git push origin master
-*多人协作总结*
+**多人协作总结**
 
 	因此：多人协作工作模式一般是这样的：
 	1.首先，可以试图用git push origin branch-name推送自己的修改.  
