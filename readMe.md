@@ -1,17 +1,23 @@
 # 创建版本库
 - 版本库又名仓库，英文名是repository，你可以简单的理解是一个目录，这个目录里面的所有文件都可以被git管理起来，每个文件的修改删除git都可以跟踪.  
 - 工作区(work directory)：就是你在电脑上看见的目录，出了.git以外的区域  
-- 版本库(repository)：在工作区中有一个隐藏目录.git，这个不属于工作区，这是版	本库.  
+- 版本库(repository)：在工作区中有一个隐藏目录.git，这个不属于工作区，这是版本库.  
 	- 缓存区(stage)  
 	- master分支以及指向master的一个指针HEAD.
-
+- add 实际上就是把文件修改添加到了缓存区。
+- commit就是把缓存区的内容提交到了当前分支，并清空了缓存区。
 >
 
 **常用操作**:
-  
+  		ls//查看目录下的所有文件
+  		ls -ah//可以查看文件夹下的隐藏文件。
 		pwd//查看当前路径  
 		cd path//访问路径文件  
 		mkdir folder//创建路径文件
+		git config --global user.name "Pis"
+		git config --global user.email "email@163.com"
+		
+		git config --list //查看git配置
 >  1.Desktop/web/git文件下创建git_test版本库 
  
 		cd Desktop web git    
@@ -19,32 +25,41 @@
 >2.初始化版本库
 
 		git init  
-		这时候git_test版本库下多了一个.git的目录，这个目录是git		涌来跟踪管理版本的。  
+		这时候git_test版本库下多了一个.git的目录，这个目录是git用来跟踪管理版本的。  
 >3.手动把文件添加到版本库中
   
 		注:
-		所有的版本控制系统，只能跟踪文本文件的改动，比如txt，网页		和所有的代码等。
->4.把文件田间到缓存区里面去
-  
+		所有的版本控制系统，只能跟踪文本文件的改动，比如txt，网页和所有的代码等。
+>4.把文件从工作区添加仓库的缓存区里面去
+  每当文件被修改之后，都需要重新add和commit
 		git add readMe.md
+		可以一次add多个文件，然后一起commit
+		git add file1.txt file2.txt
+		git commit -m "upload 2 files"
 >5.把文件提交到仓库当前分支上 
  
 		git commit -m"commit description"  
 		可以使用git status查看状态信息  
-		可以使用git diff查看文件的修改  
+		可以使用git diff查看工作区和仓库文件的区别，也就是对比不一样的内容 
 		可以使用git log查看历史纪录  
+			如果感觉日志内容太多，可以git log --pretty=oneline
+		
+		
 		可以使用git reflog查看所有的历史操作  
 		可以使用cat file查看file的内容  
 		可以使用vi file查看文件的详细信息  
+		
+		- 当使用vi fileName的方式创建文件的时候，就进入写入模式，可以编辑文件内容，然后编辑结束按esc，再：wp就可以退出了。
 		可以使用:wq退出当前文件的查看状态  
-**版本回退**  
-  
+**版本回退** 
+### commit到master分支想要撤回到之前版本： 
+  		在git中，用HEAD表示当前版本。
 		git reset --hard HEAD^//回到上一个版本  
 		git reset --hard HEAD^^//回到上上一个版本  
 		git reset --hard HEAD~100//回到100个版本以前  
 		git reset --hard commit_id//回到commit_id的版本  
-			可以使用git log查看所有的历史版本  
-			可以使用git reflog查看进入撤销后的版本  
+	控制台不关闭，可以使用git log查看所有的commit版本记录；
+	控制台关闭过了，可以使用git reflog查看所有历史纪录的版本。  
 **Git撤销修改和删除文件操作**   
  
 	修改了文件发现文件的修改有误需要撤销修改  
@@ -53,6 +68,7 @@
 	3. 使用git checkout --file丢弃在工作区中的修改    
 		1>修改了文件还没有添加到缓存区，这就回到了版本库中的状态。  
 		2>修改了文件并提交到了缓存区，回到了版本库缓存区的状态。  
+## 总之就是让这个文件会到最近一次git commit或者git add的状态。
 			
 	总结:
 	只要没有commit，都可以使用git checkout --file恢复  
