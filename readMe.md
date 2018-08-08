@@ -189,6 +189,10 @@
 	9.如果pull的时候没有建立本地和远程库的关系，需要先建立联系
 		git branch --set-upstream master origin/master // 旧的写法
                 git branch --set-upstream-to=origin/master master // 新的写法
+		git branch -u origin/feature feature // 或者写成这样
+		git branch --track feature origin/feature // 或者写成这样
+		
+		git pull origin master ----allow-unrelated-histories // 提示unrelated histories的强制做法
 		//例子：建立本地master和远程master的联系
 	10.再试着pull.pull成功后，如果别人没有和你修改相同的文件，可能就成功了；但是可能由于你和别人都修改了某个文件，所以引发了冲突，需要手动修复冲突。
 		git status//查看冲突
